@@ -1,0 +1,103 @@
+body {
+    background-color: #fff8f0;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* 🔴 K-Food 왼쪽 상단 고정 */
+header {
+    position: fixed;
+    top: 20px;
+    left: 40px;
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff4d4d;
+    z-index: 10;
+}
+
+/* 🟠 카테고리: 제목과 살짝 겹치게 */
+.category-nav {
+    margin-top: 80px; /* 제목 아래로 살짝 겹치게 */
+    display: flex;
+    justify-content: center;
+    background-color: #fff8f0;
+}
+
+.category-nav ul {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-nav li a {
+    padding: 8px 12px;
+    background-color: #ffe0e0;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #ff4d4d;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.category-nav li a:hover {
+    background-color: #ffcccc;
+}
+
+/* 🔵 검색창 하단 고정 */
+.search-box {
+    margin-top: auto;
+    padding: 40px 20px;
+    background-color: #fff0e6;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+}
+
+.input-wrapper {
+    display: flex;
+    width: 600px;
+    max-width: 90%;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 15px;
+    font-size: 18px;
+    border: 2px solid #ff9999;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+}
+
+input::placeholder {
+    color: #bbb;
+}
+
+button {
+    width: 60px;
+    background-color: #ff4d4d;
+    border: 2px solid #ff9999;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff6666;
+}
+
+button img {
+    width: 24px;
+    height: 24px;
+    filter: invert(100%);
+}
