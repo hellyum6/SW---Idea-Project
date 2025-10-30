@@ -5,11 +5,11 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* 🔴 K-Food 왼쪽 상단 고정 */
-header {
+.site-title {
     position: fixed;
     top: 20px;
     left: 40px;
@@ -19,9 +19,9 @@ header {
     z-index: 10;
 }
 
-/* 🟠 카테고리: 제목과 살짝 겹치게 */
+/* 🟠 카테고리 버튼 */
 .category-nav {
-    margin-top: 80px; /* 제목 아래로 살짝 겹치게 */
+    margin-top: 100px;
     display: flex;
     justify-content: center;
     background-color: #fff8f0;
@@ -47,6 +47,31 @@ header {
 
 .category-nav li a:hover {
     background-color: #ffcccc;
+}
+
+/* 🟢 검색 결과 카드 */
+.card-list {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.food-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 220px;
+    text-align: center;
+    padding: 10px;
+}
+
+.food-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
 /* 🔵 검색창 하단 고정 */

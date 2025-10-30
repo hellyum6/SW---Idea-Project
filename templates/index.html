@@ -1,17 +1,14 @@
+<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>K-Food 검색</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
-
 </head>
 <body>
-    <!-- 🔴 제목: 왼쪽 상단 고정 -->
     <header class="site-title">K - Food</header>
 
-    <!-- 🟠 카테고리: 제목과 겹치지 않게 아래로 띄움 -->
     <nav class="category-nav">
         <ul>
             {% for category in categories.keys() %}
@@ -20,7 +17,6 @@
         </ul>
     </nav>
 
-    <!-- 🔵 검색창 -->
     <form class="search-box" action="/search" method="post">
         <div class="input-wrapper">
             <input type="text" name="keyword" placeholder="음식 이름이나 재료를 입력하세요">

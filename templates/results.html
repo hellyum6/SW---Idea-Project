@@ -1,3 +1,4 @@
+<!-- templates/results.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,43 +7,40 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <header>검색 결과</header>
+    <header class="site-title">K - Food</header>
+
+    <nav class="category-nav">
+        <ul>
+            {% for category in categories.keys() %}
+                <li><a href="{{ url_for('category', name=category) }}">{{ category }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
 
     {% if results %}
-        {% if results|length > 1 %}
-            <ul>
+        <div class="card-list">
             {% for food in results %}
-                <li>{{ food.name }}</li>
+                <div class="food-card">
+                    <a href="{{ url_for('recipe', name=food.name) }}">
+                        <img class="food-image" src="{{ url_for('static', filename='images/' + food.image) }}" alt="{{ food.name }}">
+                    </a>
+                    <h3>{{ food.name }}</h3>
+                    <p>난이도: {{ food.difficulty }}</p>
+                    <p>조리 시간: {{ food.cook_time }}</p>
+                </div>
             {% endfor %}
-            </ul>
-        {% else %}
-            {% set food = results[0] %}
-            <div class="result-container">
-                <img class="food-image" src="{{ url_for('static', filename='images/' + food.image) }}" alt="{{ food.name }}">
-
-                <div class="info">
-                    <p><strong>카테고리:</strong> {{ food.category }}</p>
-                    <p><strong>조리 시간:</strong> {{ food.cook_time }}</p>
-                    <p><strong>난이도:</strong> {{ food.difficulty }}</p>
-                </div>
-
-                <div class="ingredients">
-                    <h3>재료</h3>
-                    <ul>
-                        {% for item in food.ingredients %}
-                            <li>{{ item }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-
-                <div class="recipe">
-                    <h3>레시피</h3>
-                    <pre>{{ food.recipe }}</pre>
-                </div>
-            </div>
-        {% endif %}
+        </div>
     {% else %}
-        <p>검색 결과가 없습니다.</p>
+        <p style="text-align:center; margin-top:100px;">검색 결과가 없습니다.</p>
     {% endif %}
+
+    <form class="search-box" action="/search" method="post">
+        <div class="input-wrapper">
+            <input type="text" name="keyword" placeholder="음식 이름이나 재료를 입력하세요">
+            <button type="submit">
+                <img src="{{ url_for('static', filename='images/up-arrow.png') }}" alt="검색">
+            </button>
+        </div>
+    </form>
 </body>
 </html>

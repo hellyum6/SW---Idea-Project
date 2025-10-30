@@ -22,9 +22,13 @@ def category(name):
 
 @app.route('/search', methods=['POST'])
 def search():
-    keyword = request.form['keyword']
-    results = [food for food in kfood_data if keyword in food['name'] or keyword in ' '.join(food['ingredients'])]
-    return render_template('results.html', results=results)
+    keyword = request.form['keyword'].strip().lower()
+    results = [
+        food for food in kfood_data
+        if keyword in food['name'].lower()
+        or any(keyword in ingredient.lower() for ingredient in food['ingredients'])
+    ]
+    return render_template('results.html', results=results, categories=categories)
 
 @app.route('/recipe/<name>')
 def recipe(name):
