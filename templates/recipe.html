@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <header class="site-title">K - Food</header>
+    <header class="site-title">K - Food</header><header class="site-title">
+        <a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">K - Food</a>
+    </header>
+
 
     <div class="result-container">
         <img class="food-image" src="{{ url_for('static', filename='images/' + food.image) }}" alt="{{ food.name }}">
