@@ -2,7 +2,7 @@
   {
     "name": "비빔밥",
     "ingredients": ["쌀", "고추장", "나물", "계란"],
-    "image": "bibimbap.jpg",
+    "image": "up-arrow.png",
     "cook_time": "20분",
     "difficulty": "중",
     "recipe": "1. 밥을 준비한다.\n2. 나물을 볶는다.\n3. 고추장과 함께 비빈다."
@@ -10,7 +10,7 @@
   {
     "name": "김치찌개",
     "ingredients": ["김치", "돼지고기", "두부", "파"],
-    "image": "kimchi_stew.jpg",
+    "image": "up-arrow.png",
     "cook_time": "30분",
     "difficulty": "하",
     "recipe": "1. 김치를 볶는다.\n2. 돼지고기를 넣고 끓인다.\n3. 두부와 파를 넣고 마무리한다."
