@@ -3,15 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>검색 결과</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>검색 결과</h1>
+    <header>검색 결과</header>
+
     {% if results %}
-        <ul>
-        {% for food in results %}
-            <li>{{ food['name'] }}</li>
-        {% endfor %}
-        </ul>
+        {% if results|length > 1 %}
+            <ul>
+            {% for food in results %}
+                <li>{{ food.name }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            {% set food = results[0] %}
+            <div class="result-container">
+                <img class="food-image" src="{{ url_for('static', filename='images/' + food.image) }}" alt="{{ food.name }}">
+
+                <div class="info">
+                    <p><strong>카테고리:</strong> {{ food.category }}</p>
+                    <p><strong>조리 시간:</strong> {{ food.cook_time }}</p>
+                    <p><strong>난이도:</strong> {{ food.difficulty }}</p>
+                </div>
+
+                <div class="ingredients">
+                    <h3>재료</h3>
+                    <ul>
+                        {% for item in food.ingredients %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="recipe">
+                    <h3>레시피</h3>
+                    <pre>{{ food.recipe }}</pre>
+                </div>
+            </div>
+        {% endif %}
     {% else %}
         <p>검색 결과가 없습니다.</p>
     {% endif %}
