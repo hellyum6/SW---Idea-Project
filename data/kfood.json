@@ -2,6 +2,7 @@
   {
     "name": "비빔밥",
     "ingredients": ["쌀", "고추장", "나물", "계란"],
+    "category" : "밥/죽류",
     "image": "no.png",
     "cook_time": "20분",
     "difficulty": "중",
@@ -10,6 +11,7 @@
   {
     "name": "김치찌개",
     "ingredients": ["김치", "돼지고기", "두부", "파"],
+    "category" : "국/찌개",
     "image": "no.png",
     "cook_time": "30분",
     "difficulty": "하",

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from urllib.parse import unquote
 import json
 import os
 
@@ -15,10 +16,12 @@ def index():
     print(categories)
     return render_template('index.html', categories=categories)
 
-@app.route('/category/<name>')
+@app.route('/category/<path:name>')
 def category(name):
-    foods = categories.get(name, [])
-    return render_template('category.html', category=name, foods=foods, categories=categories)
+    decoded_name = unquote(name)
+    print(f"요청된 카테고리: {decoded_name}")
+    foods = [food for food in kfood_data if food['category'] == decoded_name]
+    return render_template('category.html', category=decoded_name, foods=foods, categories=categories)
 
 @app.route('/search', methods=['POST'])
 def search():

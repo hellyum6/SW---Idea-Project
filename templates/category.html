@@ -1,0 +1,37 @@
+<!-- templates/category.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ category }} - K-Food</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="site-title">
+        <a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">K - Food</a>
+    </header>
+
+    <nav class="category-nav">
+        <ul>
+            {% for cat in categories.keys() %}
+                <li><a href="{{ url_for('category', name=cat|urlencode) }}">{{ cat }}</a></li>
+
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <h2 class="category-title">[{{ category }}] 카테고리의 음식들</h2>
+
+    <div class="food-list">
+        {% for food in foods %}
+            <div class="food-card">
+                <img src="{{ url_for('static', filename='images/' ~ food.image) }}" alt="{{ food.name }}">
+                <h3><a href="{{ url_for('recipe', name=food.name) }}">{{ food.name }}</a></h3>
+                <p>조리 시간: {{ food.cook_time }} | 난이도: {{ food.difficulty }}</p>
+            </div>
+        {% else %}
+            <p>해당 카테고리에 등록된 음식이 없습니다.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
