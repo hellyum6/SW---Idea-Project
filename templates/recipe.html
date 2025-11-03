@@ -1,5 +1,6 @@
 <!-- templates/recipe.html -->
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -7,33 +8,48 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <header class="site-title">K - Food</header><header class="site-title">
+    <header class="site-title">
         <a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">K - Food</a>
     </header>
 
+    <nav class="category-nav">
+        <ul>
+            {% for category in categories %}
+                <li><a href="{{ url_for('category', name=category|urlencode) }}">{{ category }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
 
-    <div class="result-container">
-        <img class="food-image" src="{{ url_for('static', filename='images/' + food.image) }}" alt="{{ food.name }}">
-
-        <div class="info">
-            <h2>{{ food.name }}</h2>
-            <p><strong>카테고리:</strong> {{ food.category if food.category is defined else '미분류' }}</p>
-            <p><strong>조리 시간:</strong> {{ food.cook_time }}</p>
-            <p><strong>난이도:</strong> {{ food.difficulty }}</p>
+    <div class="recipe-container">
+        <div class="recipe-header">
+            <img class="recipe-image" src="{{ url_for('static', filename='images/' + food.image) }}" alt="{{ food.name }}">
+            <div class="recipe-info">
+                <h1>{{ food.name }}</h1>
+                <div class="info-tags">
+                    <span class="tag">📂 {{ food.category if food.category is defined else '미분류' }}</span>
+                    <span class="tag">⏱️ {{ food.cook_time }}</span>
+                    <span class="tag">
+                        {% set difficulty_icons = {'하': '🟢', '중': '🟡', '상': '🔴'} %}
+                        {{ difficulty_icons.get(food.difficulty, '') }} {{ food.difficulty }}
+                    </span>
+                </div>
+            </div>
         </div>
 
-        <div class="ingredients">
-            <h3>재료</h3>
-            <ul>
-                {% for item in food.ingredients %}
-                    <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
-        </div>
+        <div class="recipe-content">
+            <div class="ingredients-section">
+                <h2>🥘 재료</h2>
+                <ul class="ingredients-list">
+                    {% for item in food.ingredients %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
 
-        <div class="recipe">
-            <h3>레시피</h3>
-            <pre>{{ food.recipe }}</pre>
+            <div class="recipe-section">
+                <h2>👨‍🍳 조리 방법</h2>
+                <div class="recipe-steps">{{ food.recipe }}</div>
+            </div>
         </div>
     </div>
 </body>

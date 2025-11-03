@@ -8,23 +8,26 @@ body {
     min-height: 100vh;
 }
 
-/* 🔴 K-Food 왼쪽 상단 고정 */
 .site-title {
-    position: fixed;
-    top: 20px;
-    left: 40px;
+    position: relative;
+    top: 0;
+    padding: 20px 40px;
+    height: 80px;
     font-size: 48px;
     font-weight: bold;
     color: #ff4d4d;
-    z-index: 10;
+    background-color: #fff8f0;
 }
 
-/* 🟠 카테고리 버튼 */
 .category-nav {
-    margin-top: 100px;
     display: flex;
     justify-content: center;
     background-color: #fff8f0;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
 }
 
 .category-nav ul {
@@ -46,10 +49,9 @@ body {
 }
 
 .category-nav li a:hover {
-    background-color: #ffcccc;
+    background-color: white;
 }
 
-/* 🟢 검색 결과 카드 */
 .card-list {
     margin-top: 40px;
     display: flex;
@@ -74,7 +76,6 @@ body {
     border-radius: 8px;
 }
 
-/* 🔵 검색창 하단 고정 */
 .search-box {
     margin-top: auto;
     padding: 40px 20px;
@@ -125,4 +126,115 @@ button img {
     width: 24px;
     height: 24px;
     filter: invert(100%);
+}
+
+.recipe-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.recipe-header {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.recipe-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.recipe-info {
+    flex: 1;
+}
+
+.recipe-info h1 {
+    font-size: 36px;
+    color: #ff4d4d;
+    margin: 0 0 20px 0;
+}
+
+.info-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background-color: #ffe0e0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #ff4d4d;
+    font-weight: 500;
+}
+
+.recipe-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+.ingredients-section,
+.recipe-section {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.ingredients-section h2,
+.recipe-section h2 {
+    font-size: 24px;
+    color: #ff4d4d;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ffe0e0;
+    padding-bottom: 10px;
+}
+
+.ingredients-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ingredients-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 17px;
+    color: #333;
+}
+
+.ingredients-list li:last-child {
+    border-bottom: none;
+}
+
+.ingredients-list li:before {
+    content: "✓ ";
+    color: #ff4d4d;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.recipe-steps {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333;
+    white-space: pre-line;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.recipe-steps::first-line {
+    margin-top: 0;
 }

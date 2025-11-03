@@ -1,5 +1,6 @@
-<!-- templates/results.html -->
+<!-- templates/results.html-->
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -7,15 +8,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <header class="site-title">K - Food</header><header class="site-title">
+    <header class="site-title">
         <a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">K - Food</a>
     </header>
 
-
     <nav class="category-nav">
         <ul>
-            {% for category in categories.keys() %}
-                <li><a href="{{ url_for('category', name=category) }}">{{ category }}</a></li>
+            {% for category in categories %}
+                <li><a href="{{ url_for('category', name=category|urlencode) }}">{{ category }}</a></li>
             {% endfor %}
         </ul>
     </nav>

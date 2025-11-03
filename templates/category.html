@@ -1,5 +1,6 @@
-<!-- templates/category.html -->
+<!-- templates/category.html-->
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -13,25 +14,29 @@
 
     <nav class="category-nav">
         <ul>
-            {% for cat in categories.keys() %}
+            {% for cat in categories %}
                 <li><a href="{{ url_for('category', name=cat|urlencode) }}">{{ cat }}</a></li>
-
             {% endfor %}
         </ul>
     </nav>
 
     <h2 class="category-title">[{{ category }}] 카테고리의 음식들</h2>
 
-    <div class="food-list">
-        {% for food in foods %}
-            <div class="food-card">
-                <img src="{{ url_for('static', filename='images/' ~ food.image) }}" alt="{{ food.name }}">
-                <h3><a href="{{ url_for('recipe', name=food.name) }}">{{ food.name }}</a></h3>
-                <p>조리 시간: {{ food.cook_time }} | 난이도: {{ food.difficulty }}</p>
-            </div>
-        {% else %}
-            <p>해당 카테고리에 등록된 음식이 없습니다.</p>
-        {% endfor %}
-    </div>
+    {% if foods %}
+        <div class="card-list">
+            {% for food in foods %}
+                <div class="food-card">
+                    <a href="{{ url_for('recipe', name=food.name) }}">
+                        <img class="food-image" src="{{ url_for('static', filename='images/' + food.image) }}" alt="{{ food.name }}">
+                    </a>
+                    <h3>{{ food.name }}</h3>
+                    <p>난이도: {{ food.difficulty }}</p>
+                    <p>조리 시간: {{ food.cook_time }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p style="text-align:center; margin-top:100px;">해당 카테고리에 등록된 음식이 없습니다.</p>
+    {% endif %}
 </body>
 </html>
